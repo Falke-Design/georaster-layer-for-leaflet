@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import type { GridLayerOptions, Coords, CRS, DoneCallback, LatLngBounds, Transformation } from "leaflet";
+import type { GridLayerOptions, Coords, CRS, DoneCallback, LatLngBounds, Transformation, Zoom } from "leaflet";
 import type { Feature, FeatureCollection, Polygon, MultiPolygon } from "geojson";
 
 export type MaskStrategy = "inside" | "outside";
@@ -18,7 +18,7 @@ export type SimplePoint = {
 export type Mask = string | Feature | FeatureCollection | Polygon | MultiPolygon;
 
 interface GeoRasterLayerOptions_CommonOptions extends GridLayerOptions {
-  resolution?: number;
+  resolution?: number | { [key: number]: number };
   debugLevel?: DebugLevel;
   pixelValuesToColorFn?: PixelValuesToColorFn;
   bounds?: LatLngBounds;
@@ -77,7 +77,7 @@ export type GetValuesOptions = {
   right?: number;
   top?: number;
   width: number;
-  resampleMethod?: ResampleMethod
+  resampleMethod?: ResampleMethod;
 };
 
 export type GeoRasterValues = number[][][];
@@ -128,16 +128,16 @@ export interface GeoRaster {
 }
 
 export interface CustomCSSStyleDeclaration extends CSSStyleDeclaration {
-  WebkitBackfaceVisibility?: string
+  WebkitBackfaceVisibility?: string;
 }
 
 export interface CustomTransformation extends Transformation {
-  _a?: Number,
-  _b?: Number,
-  _c?: Number,
-  _d?: Number
+  _a?: Number;
+  _b?: Number;
+  _c?: Number;
+  _d?: Number;
 }
 
 export interface CustomCRS extends CRS {
-  transformation?: CustomTransformation
+  transformation?: CustomTransformation;
 }
